@@ -1,3 +1,5 @@
+package objet;
+
 import java.util.ArrayList;
 
 public class Chemin {

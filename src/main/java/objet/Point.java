@@ -1,3 +1,5 @@
+package objet;
+
 import jdk.dynalink.beans.StaticClass;
 
 public class Point {

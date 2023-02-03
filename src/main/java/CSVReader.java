@@ -5,7 +5,8 @@ public class CSVReader {
     //private String filepath = "D:/ETUDE/M2/S2/DillXp/TraitementCSV/traitementcsv/pisteType_10km_lesMenuires.csv";
     //private String filepath = "C:/Users/thoma/OneDrive/Documents/Etude/M2/S1/DillXP/SupaBase/CSV/traitementcsv/pisteType_10km_lesMenuires.csv";
     //private String filepath = "C:/Users/sylva/Sylvain/OneDrive/Perso/Universite/Master/DILL/traitementcsv/pisteType_10km_lesMenuires.csv";
-    String filepath = new java.io.File("").getAbsolutePath() + "/traitementcsv/pisteType_10km_lesMenuires.csv";
+    String filepath = new java.io.File("").getAbsolutePath() + "/src/main/java/CSV/pisteType_10km_lesMenuires.csv";
+    //String filepath = new java.io.File("").getAbsolutePath() + "/test100.csv";
     private static final String DELIMITER = ",";
     private static final String SEPARATOR = "\n";
     private static final String HEADERPOINT = "Latitude,Longitude";

@@ -1,3 +1,5 @@
+package objet;
+
 public class Arc {
 
     private Point fromTo;

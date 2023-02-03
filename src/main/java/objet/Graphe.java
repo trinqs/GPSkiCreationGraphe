@@ -1,3 +1,7 @@
+package objet;
+
+import traitementGraphe.CreationGraph;
+
 import java.util.*;
 
 public class Graphe {
@@ -78,17 +82,17 @@ public class Graphe {
                 } else if ( !(previous_to_point.getNom().equals(point_to_next.getNom())) ) {
                     System.out.println("Problème à propos des noms");
                     cptPrblm++;
+                } else {
+
+                    //on crée le nouvel arc comme la fusion des deux précédents
+                    Arc newArc = new Arc(previous, next, previous_to_point.getPoids() + point_to_next.getPoids(), previous_to_point.getNiveau(), previous_to_point.getNom());
+
+                    arcs.get(precedents.get(0)).clear(); //on enlève l'arc qui mène au point inutile
+                    arcs.get(precedents.get(0)).add(newArc); //on ajoute le nouvel arc
+                    arcs.remove(idPoint); //on retire les arcs qui partent du point
+
+                    idToDelete.add(idPoint);
                 }
-
-
-                //on crée le nouvel arc comme la fusion des deux précédents
-                Arc newArc = new Arc(previous, next, previous_to_point.getPoids() + point_to_next.getPoids(), previous_to_point.getNiveau(), previous_to_point.getNom());
-
-                arcs.get(precedents.get(0)).clear(); //on enlève l'arc qui mène au point inutile
-                arcs.get(precedents.get(0)).add(newArc); //on ajoute le nouvel arc
-                arcs.remove(idPoint); //on retire les arcs qui partent du point
-
-                idToDelete.add(idPoint);
             }
         }
         for (Long idPoint : idToDelete ) {
