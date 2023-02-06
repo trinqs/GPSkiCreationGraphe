@@ -28,7 +28,7 @@ public class Main {
 
         Set<Point> points = creationGraph.GetAllPoint(chemins);
 
-        ArrayList<Arc> arcs = creationGraph.getAllArc(chemins);
+        ArrayList<Arc> arcs = creationGraph.getAllArc(chemins,points);
 
         System.out.println("nb de points "+points.size()+" nb d'arcs "+arcs.size());
 

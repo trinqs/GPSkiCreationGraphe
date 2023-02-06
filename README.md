@@ -1,2 +1,2 @@
 # GPSkiCreationGraphe
-C'est la créationde graphe de GPSki
+C'est la création de graphe de GPSki

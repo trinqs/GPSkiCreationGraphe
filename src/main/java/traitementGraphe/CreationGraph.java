@@ -21,8 +21,8 @@ public class CreationGraph {
 
 
 
-    public ArrayList<Arc> getAllArc(ArrayList<Chemin> chemins){
-        Map<Arc, Float> poidArc = getPoidArc(chemins);
+    public ArrayList<Arc> getAllArc(ArrayList<Chemin> chemins, Set<Point> points){
+        Map<Arc, Float> poidArc = getPoidArc(chemins,points); //points
         long cptid = 0;
 
         ArrayList<Arc> res = new ArrayList<>();
@@ -36,14 +36,27 @@ public class CreationGraph {
         return res;
     }
 
-    private Map<Arc, Float> getPoidArc(ArrayList<Chemin> chemins) {
+    private Map<Arc, Float> getPoidArc(ArrayList<Chemin> chemins, Set<Point> points) {
         Map<Arc,Float> res = new HashMap<>();
 
         for(Chemin chemin : chemins){
             ArrayList<Point> listePoint = chemin.getCoordinates();
 
             for(int i = 0; i<listePoint.size()-1;i++){
-                Arc arc = new Arc(listePoint.get(i),listePoint.get(i+1),0,chemin.getPisteDifficulty(), chemin.getName());
+
+                Point start = null;
+                Point end = null;
+
+                for (Point point : points
+                ) {
+                    if (point.equals(listePoint.get(i))){
+                        start = point;
+                    } else if (point.equals(listePoint.get(i+1))) {
+                        end = point;
+                    }
+                }
+                Arc arc = new Arc(start,end,0,chemin.getPisteDifficulty(), chemin.getName());
+                //Arc arc = new Arc(listePoint.get(i),listePoint.get(i+1),0,chemin.getPisteDifficulty(), chemin.getName());
 
                 if(res.containsKey(arc)){
                     res.replace(arc,res.get(arc)+1);
@@ -53,8 +66,6 @@ public class CreationGraph {
                 }
             }
         }
-
         return res;
     }
-
 }
