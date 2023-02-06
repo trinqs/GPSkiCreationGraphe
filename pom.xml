@@ -4,7 +4,7 @@
   <artifactId>creationGraphe</artifactId>
   <version>0.0.1-SNAPSHOT</version>
     <properties>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
+        <maven.compiler.source>1.9</maven.compiler.source>
+        <maven.compiler.target>1.9</maven.compiler.target>
     </properties>
 </project>

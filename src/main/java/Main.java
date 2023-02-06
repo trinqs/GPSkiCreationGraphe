@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         CSVReader reader =new CSVReader();
 
-        ArrayList<ArrayList<String>> aerialWay = reader.readCSV();
+        ArrayList<ArrayList<String>> aerialWay = reader.readCSVAll();
 
         ArrayList<Chemin> chemins= new ArrayList<>();
         //System.out.println(aerialWay.size());

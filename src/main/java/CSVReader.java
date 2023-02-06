@@ -5,7 +5,8 @@ public class CSVReader {
     //private String filepath = "D:/ETUDE/M2/S2/DillXp/TraitementCSV/traitementcsv/pisteType_10km_lesMenuires.csv";
     //private String filepath = "C:/Users/thoma/OneDrive/Documents/Etude/M2/S1/DillXP/SupaBase/CSV/traitementcsv/pisteType_10km_lesMenuires.csv";
     //private String filepath = "C:/Users/sylva/Sylvain/OneDrive/Perso/Universite/Master/DILL/traitementcsv/pisteType_10km_lesMenuires.csv";
-    String filepath = new java.io.File("").getAbsolutePath() + "/src/main/java/CSV/pisteType_10km_lesMenuires.csv";
+    String filepathPiste = new java.io.File("").getAbsolutePath() + "/src/main/java/CSV/pisteType_10km_lesMenuires.csv";
+    String filepathAerialWay = new java.io.File("").getAbsolutePath() + "/src/main/java/CSV/aerialways_ways_10km_lesMenuires.csv";
     //String filepath = new java.io.File("").getAbsolutePath() + "/test100.csv";
     private static final String DELIMITER = ",";
     private static final String SEPARATOR = "\n";
@@ -14,13 +15,22 @@ public class CSVReader {
 
     public CSVReader(){}
 
-    public ArrayList<ArrayList<String>> readCSV() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(filepath));
+    public ArrayList<ArrayList<String>> readCSVAll() throws IOException {
+        ArrayList<ArrayList<String>> fileline = new ArrayList<>();
+        fileline.addAll(readCSV(filepathPiste));
+        fileline.addAll(readCSV(filepathAerialWay));
+        return fileline;
+    }
+
+    public ArrayList<ArrayList<String>> readCSV(String file) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(file));
 
 
         String line = "";
         int cpt = 0;
         ArrayList<ArrayList<String>> fileline = new ArrayList<>();
+
+        Map<String, Integer> test = new HashMap<>();
 
         while ((line =br.readLine())!=null){
 
@@ -53,14 +63,24 @@ public class CSVReader {
                         }
                     }
 
+                    if(test.containsKey(aerialWay2[1])){
+                        test.put(aerialWay2[1], test.get(aerialWay2[1])+1);
+                    }
+                    else{
+                        test.put(aerialWay2[1], 1);
+                    }
+
                     fileline.add(listLine);
                 }
             }
             cpt++;
         }
 
+        for (Map.Entry<String, Integer> entry : test.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+
         return fileline;
     }
-
-
 }
+

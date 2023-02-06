@@ -1,8 +1,11 @@
 package objet;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Chemin {
+    private final static List<String> pisteDifficultyType= new ArrayList<>(List.of("","easy","intermediate","advanced","expert"));
     private String latitude;
     private String longitude;
     private String altitude;
@@ -131,11 +134,19 @@ public class Chemin {
 
         this.coordinates = this.creerChemin(ligne.get(4));
         this.pisteDifficulty = ligne.get(6);
-        if(ligne.get(12).isEmpty()){
-            this.name = ligne.get(5);
+        if(pisteDifficultyType.contains(ligne.get(6))) {
+            if (ligne.get(12).isEmpty()) {
+                this.name = ligne.get(5);
+            } else {
+                this.name = ligne.get(12);
+            }
         }
         else{
-            this.name = ligne.get(12);
+            if (ligne.get(16).isEmpty()) {
+                this.name = ligne.get(5);
+            } else {
+                this.name = ligne.get(16);
+            }
         }
     }
 
@@ -159,4 +170,12 @@ public class Chemin {
     public String getPisteDifficulty() {return pisteDifficulty;}
 
     public String getName() {return name;}
+
+    @Override
+    public String toString() {
+        return "Chemin{" +
+                //"coordinates=" + coordinates +
+                ", pisteDifficulty='" + pisteDifficulty + '\'' +
+                ", name='" + name + '\'' +
+                '}';}
 }
